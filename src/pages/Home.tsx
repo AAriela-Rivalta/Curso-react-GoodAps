@@ -1,5 +1,7 @@
-import { Cover } from "../components/ui/Cover";
+import {  useState } from "react";
 import { Cards } from "../components/ui/Cards";
+import { Cover } from "../components/ui/Cover";
+import { EditForm } from "../components/ui/EditForm";
 
 import { useAllProducts } from "../hooks/useAllProducts";
 
@@ -18,6 +20,8 @@ interface Product {
 }
 
 export function Home() {
+    const [open, setOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const { data, isPending } = useAllProducts();
 
   if (isPending) {
@@ -28,6 +32,7 @@ export function Home() {
     );  
     }
     return(
+        <>
         <section className='flex flex-col justify-center items-center p-10'>
             <Cover title='Listado de Productos' />
             
@@ -46,11 +51,41 @@ export function Home() {
                         
                         // Define la ruta de navegación (ej: /products/1)
                         href={`/products/${product.id}`} 
-                    
-                        
+
+                        showBtn={true}
+                        onEdit={() => {
+                        setSelectedProduct(product);
+                        setOpen(true);
+                        }} 
                     />
                 ))}
             </div>
         </section>
+        {open && selectedProduct && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-10">
+          <div className="bg-white p-6 rounded-xl w-2xl flex flex-col justify-center items-center">
+            <EditForm
+              id={selectedProduct.id}
+              initialData={{
+                title: selectedProduct.title,
+                description: selectedProduct.description,
+                category: selectedProduct.category,
+                price: selectedProduct.price,
+                
+                // === AÑADIR PROPIEDADES FALTANTES ===
+                discountPercentage: selectedProduct.discountPercentage,
+                rating: selectedProduct.rating,
+                stock: selectedProduct.stock,
+                brand: selectedProduct.brand,
+                // ==================================
+                
+                thumbnail: selectedProduct.thumbnail,
+              }}
+              onClose={() => setOpen(false)}
+            />
+          </div>
+        </div>
+      )}
+        </>
     )
 }

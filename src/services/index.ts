@@ -47,9 +47,26 @@ async function createProducts(body: Product): Promise<any> {
   return res.data;
 }
 
+async function updateProducts(id: number, body: Product): Promise<any> {
+  const res = await api.put(`/products/${id}`, {
+    title: body.title,
+    description: body.description,
+    price: body.price,
+    discountPercentage: body.discountPercentage,
+    rating: body.rating,
+    stock: body.stock,
+    brand: body.brand,
+    category: body.category,
+    thumbnail: body.thumbnail,
+  })
+
+  return res.data;
+}
+
 export {
     getAllProducts,
     getDetailsProducts,
     deleteProducts,
     createProducts,
+    updateProducts,
 }
