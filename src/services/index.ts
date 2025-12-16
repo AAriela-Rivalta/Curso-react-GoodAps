@@ -63,10 +63,17 @@ async function updateProducts(id: number, body: Product): Promise<any> {
   return res.data;
 }
 
+async function getAllUsers () {
+  const res = await api.get("/users")
+
+  return res.data
+}
+
 export {
     getAllProducts,
     getDetailsProducts,
     deleteProducts,
     createProducts,
     updateProducts,
+    getAllUsers,
 }
