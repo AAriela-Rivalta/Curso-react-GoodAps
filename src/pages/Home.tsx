@@ -48,6 +48,7 @@ export function Home() {
                         description={product.description}
                         price={product.price}
                         src={product.thumbnail} 
+                        rating={product.rating}
                         
                         // Define la ruta de navegación (ej: /products/1)
                         href={`/products/${product.id}`} 
@@ -62,7 +63,7 @@ export function Home() {
             </div>
         </section>
         {open && selectedProduct && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-10">
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-xl w-2xl flex flex-col justify-center items-center">
             <EditForm
               id={selectedProduct.id}

@@ -44,24 +44,24 @@ export function EditForm({ id, initialData, onClose }: EditFormProps) {
     }, [initialData, reset]);
 
     function onSubmit(body: ProductFormData) {
-        mutate(
-            {id, body},
-            {
-            onSuccess: () => {
-                toast.success("Producto actualizado con éxito");
-                onClose(); //Cerrar el modal
-            },
-            onError: (error: any) => {
-                const menssage =
-                error?.response?.data?.message || 
-                error.message ||
-                'Ocurrio un error al actualizar el producto';
+    mutate(
+      { id, body },
+      {
+        onSuccess: () => {
+          toast.success('Producto actualizado')
+          onClose(); // cerrar modal
+        },
+        onError: (error: any) => {
+          const message =
+            error?.response?.data?.message ||
+            error?.message ||
+            'Ocurrió un error al actualizar el producto';
 
-                toast.error(menssage);
-            },
-            }
-        );
-    }
+          toast.error(message)
+        },
+      }
+    );
+  }
 
    return (
         <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-6 z-20 p-4">
@@ -204,26 +204,12 @@ export function EditForm({ id, initialData, onClose }: EditFormProps) {
 
             {/* Botón de envío */}
             <div className="pt-4 flex justify-end gap-3">
-                <button
-                    type="button"
-                    onClick={onClose}
-                    className="
-                        py-2 px-6 rounded-lg font-semibold text-gray-700 border border-gray-300
-                        hover:bg-gray-100 transition-colors duration-200
-                    "
-                >
-                    Cancelar
-                </button>
-                <button 
+               <button
                     type="submit"
                     disabled={isPending}
-                    className="
-                        bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg 
-                        hover:bg-blue-700 transition-colors duration-200 
-                        disabled:bg-blue-400 disabled:cursor-not-allowed
-                    "
+                    className="w-full bg-yellow-500 text-white font-semibold py-2 rounded hover:bg-yellow-600 transition "
                 >
-                    {isPending ? 'Guardando...' : 'Guardar Cambios'}
+                {isPending ? 'Editando...' : 'Guardar cambios'}
                 </button>
             </div>
         </form>
