@@ -32,13 +32,13 @@ export function Users () {
     }
 
     return (
-    <section className="flex flex-col justify-center items-center p-10">
+    <section className="flex flex-col justify-center items-center p-10 ">
       <Cover title="Listado de Usuarios" />
-      <div className="flex flex-wrap justify-center gap-6 mt-20 w-full max-w-6xl">
+      <div className="flex flex-wrap justify-center gap-6 mt-20 w-full max-w-6xl ">
          {data?.users?.map((user: any) => (
           <div
             key={user.id}
-            className="w-80 border rounded-2xl p-5 bg-white flex flex-col gap-3 shadow-lg hover:shadow-xl transition-shadow duration-300"
+            className="w-80 border rounded-2xl p-5 bg-[#eee9e1] flex flex-col gap-3 shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
             {/* Imagen del usuario */}
             <div className="flex justify-center mb-2">

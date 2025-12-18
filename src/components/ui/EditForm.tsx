@@ -103,7 +103,7 @@ export function EditForm({ id, initialData, onClose }: EditFormProps) {
                     <input 
                         id="price"
                         type="number"
-                        step="0.1" // Permite decimales
+                        step="any" // Permite decimales
                         {...register("price", { valueAsNumber: true })}
                         className={`w-full border px-3 py-2 rounded ${
                             errors.price ? 'border-red-500' : 'border-gray-300'
@@ -118,6 +118,7 @@ export function EditForm({ id, initialData, onClose }: EditFormProps) {
                     <input 
                         id="discountPercentage"
                         type="number"
+                        step="0.01" // Permite decimales
                         {...register("discountPercentage", { valueAsNumber: true })}
                         className={`w-full border px-3 py-2 rounded ${
                             errors.discountPercentage ? 'border-red-500' : 'border-gray-300'
@@ -132,7 +133,7 @@ export function EditForm({ id, initialData, onClose }: EditFormProps) {
                     <input 
                         id="rating"
                         type="number"
-                        step="0.1" // Permite decimales para la calificación
+                        step="0.01" // Permite decimales para la calificación
                         {...register("rating", { valueAsNumber: true })}
                         className={`w-full border px-3 py-2 rounded ${
                             errors.rating ? 'border-red-500' : 'border-gray-300'

@@ -1,17 +1,39 @@
+import { useContext } from 'react'
 import { Link, Outlet } from 'react-router-dom'
-import  headerBg  from '../img/headerBg.jpg'
 import { Toaster } from 'sonner'
+
+import { UserContext } from '../../context/UserContext';
+import { useUserStore } from '../../store/useUserStore';
 
 
 export function Layouts() {
-    const imageUrl = headerBg;
-  return (
+  const userWithContext = useContext(UserContext);
+  const userWithZustand = useUserStore(state => state.user);
+
+   if (!userWithContext) return null;
+
+
+
+    
+  
+   return (
     <>
-    <Toaster position="top-right" richColors />
-      <header className='p-10 bg-center bg-no-repeat bg-cover h-40'
-            style={{ backgroundImage: `url(${imageUrl})` }}>
+      <Toaster position="top-right" richColors />
+      <header className='p-10 bg-[#eee9e1]'>
         <div className='flex justify-between'>
-          <Link to="/" className='text-3xl font-bold'>Ecommerce</Link>
+          <div>
+            <Link to="/" className='text-3xl text-[#5c493c] font-bold'>Ecommerce GoodApps</Link>
+            <div className='flex flex-col mt-1'>
+              <span>
+                Hola <span className='font-bold'>{userWithContext.username}</span>{' '}
+                desde CreateContext{' '}
+              </span>
+              <span>
+                Hola <span className='font-bold'>{userWithZustand.username}</span>{' '}
+                desde Zustand
+              </span>
+            </div>
+          </div>
           <nav className=''>
             <ul className='flex items-center gap-2'>
               <li>
@@ -28,7 +50,7 @@ export function Layouts() {
         </div>
       </header>
       <Outlet />
-      <footer className='p-20 bg-gray-500'></footer>
+      <footer className='p-20 bg-[#eee9e1]'></footer>
     </>
   )
 }

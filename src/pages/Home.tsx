@@ -33,7 +33,7 @@ export function Home() {
     }
     return(
         <>
-        <section className='flex flex-col justify-center items-center p-10'>
+        <section className='flex flex-col justify-center items-center p-10 '>
             <Cover title='Listado de Productos' />
             
             <div className='flex flex-wrap justify-center gap-5 mt-20'>

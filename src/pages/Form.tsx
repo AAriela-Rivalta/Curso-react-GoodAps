@@ -4,6 +4,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 
 import { useCreateProducts } from "../hooks/useCreateProducts";
+import { useUserStore } from '../store/useUserStore';
 
 const productSchema = z.object({
     title: z.string().min(3, 'El título debe tener al menos 3 caracteres'),
@@ -21,7 +22,7 @@ type ProductFormData = z.infer<typeof productSchema>;
 
 export function Form() {
     const { mutate, isPending } = useCreateProducts();
-
+    const userWithZustand = useUserStore(state => state.user);
 
  const {
     register,
@@ -65,10 +66,11 @@ export function Form() {
   return (
     <div className="min-h-screen py-12 px-4">
         <div className="max-w-2xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-xl p-8">
+            <div className="bg-white rounded-2xl shadow-2xl p-8">
                 <div className="mb-6">
                     <h2 className="text-3xl font-bold text-gray-800">Nuevo Producto</h2>
                     <p className="text-gray-600 mt-2">Completa el formularios con validación Zod + React Hook Form</p>
+                     <p className="text-gray-900 mt-2">Hola{userWithZustand.username}</p>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     {/* Título */}
@@ -241,7 +243,7 @@ export function Form() {
                     <button
                         type="submit"
                         disabled={isPending}
-                        className="w-full bg-indigo-600 text-white font-semibold py-3 px-6 cursor-pointer rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 transition duration-200 disabled:opacity-50"
+                        className="w-full bg-[#5c493c] text-white font-semibold py-3 px-6 cursor-pointer rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 transition duration-200 disabled:opacity-50"
                     >
                         {isPending ? 'Guardando...' : 'Crear Producto'}
                     </button>

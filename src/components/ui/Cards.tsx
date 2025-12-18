@@ -69,7 +69,8 @@ export function Cards({ id, src, title, description, price, href, showBtn = true
 
 //Renderizado enfocado en mostrar la información
   return (
-    <div className='flex flex-col items-center w-72 h-96 text-center border rounded-4xl p-5 relative'>
+    <div className='flex flex-col items-center w-72 h-96 text-center border rounded-4xl p-5 relative bg-[#eee9e1]
+    hover:shadow-2xl transition-all duration-300'>
       
       {/* Imagen del producto */}
       <img 
@@ -79,21 +80,21 @@ export function Cards({ id, src, title, description, price, href, showBtn = true
       />
       
       {/* Título */}
-      <h1 className='text-base/tight line-clamp-2 mt-3 font-bold'>{title}</h1>
+      <h1 className='text-base/tight line-clamp-2 mt-3 font-bold text-[#a75719]'>{title}</h1>
       
       {/* Descripción*/}
       <p className='text-sm line-clamp-2 text-gray-600 my-1'>{description}</p>
       
       <div className='flex flex-row justify-between items-center w-full px-5 mt-2'>
         {/* Precio */}
-        <p className='text-2xl font-bold text-blue-700'>
+        <p className='text-2xl font-bold text-[#a75719]'>
           ${price.toFixed(2)}
         </p>
 
         {/* Rating (Usando el valor animado) */}
-        <div className='flex items-center text-sm text-yellow-500 mt-2'>
+        <div className='flex items-center text-sm text-[#a75719] mt-2'>
             <span role="img" aria-label="Rating Star" className='mr-1'>⭐</span>
-            <span className='font-semibold text-yellow-600'>
+            <span className='font-semibold text-[#a75719]'>
                 {animatedRating.toFixed(2)} {/*mostrar valor animado */}
             </span>
         </div>
@@ -105,7 +106,7 @@ export function Cards({ id, src, title, description, price, href, showBtn = true
         {/* Botón Eliminar */}
         {showBtn && (
             <button
-              className='bg-red-400 p-2 rounded-md cursor-pointer disabled:opacity-50'
+              className='bg-[#5c493c] p-2 rounded-md cursor-pointer disabled:opacity-50 text-white'
               onClick={() => handleDelete(id)}
               disabled={isPending}
             >
@@ -116,13 +117,13 @@ export function Cards({ id, src, title, description, price, href, showBtn = true
         {/* Botón Ver producto (Usando Link de react-router-dom) */}
         <Link
           to={href} // Aquí se usa la prop href (ej: /products/1)
-          className='bg-green-400 p-2 rounded-md cursor-pointer hover:bg-green-500 transition duration-150'
+          className='bg-[#5c493c] p-2 rounded-md cursor-pointer disabled:opacity-50 text-white'
         >
           Ver producto
         </Link>
         {/*Editar produto */}
         <button
-            className='bg-yellow-400 p-2 rounded-md cursor-pointer'
+            className='bg-[#5c493c] p-2 rounded-md cursor-pointer disabled:opacity-50 text-white'
             onClick={onEdit}
           >
             Editar
