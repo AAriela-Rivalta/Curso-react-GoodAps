@@ -208,7 +208,7 @@ export function EditForm({ id, initialData, onClose }: EditFormProps) {
                <button
                     type="submit"
                     disabled={isPending}
-                    className="w-full bg-yellow-500 text-white font-semibold py-2 rounded hover:bg-yellow-600 transition "
+                    className="w-full bg-[#5c493c] text-white font-semibold py-2 rounded "
                 >
                 {isPending ? 'Editando...' : 'Guardar cambios'}
                 </button>

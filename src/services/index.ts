@@ -10,9 +10,10 @@ interface Product {
     brand: string;
     category: string;
     thumbnail: string;
-    //images: string[]; 
+    images?: string[]; 
 }
 
+// Products
 async function getAllProducts() {
   return await api.get("/products");
 }

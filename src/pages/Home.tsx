@@ -39,7 +39,11 @@ export function Home() {
             
             <div className='flex flex-wrap justify-center gap-5 mt-20'>
                 
-                {data?.products.map((product: Product) => ( //se agrego .products a API de DummyJSON, la cual devuelve un Objeto que contiene la lista adentro.
+                {data?.data.products.map((product: Product) => ( //se agrego .products a API de DummyJSON, la cual devuelve un Objeto que contiene la lista adentro.
+                //se agrego otro data porque useAllProducts devuelve toda la respuesta de axios, que tiene otro data adentro
+                //data (React Query) -> AxiosResponse
+                //data.data -> respuesta real de la API
+                //data.data.products -> lista de productos
                     <Cards
                         key={product.id}
                         id={product.id}
