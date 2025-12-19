@@ -14,25 +14,19 @@ interface Product {
 }
 
 async function getAllProducts() {
-    const res = await api.get("/products")
-
-    return res.data
+  return await api.get("/products");
 }
 
 async function getDetailsProducts(id: number | undefined){
-    const res = await api.get(`/products/${id}`)
-
-    return res.data
+    return await api.get(`/products/${id}`)
 }
 
 async function deleteProducts(id: number | undefined) {
-  const res = await api.delete(`/products/${id}`);
-
-  return res.data;
+  return await api.delete(`/products/${id}`)
 }
 
 async function createProducts(body: Product): Promise<any> {
-  const res = await api.post('/products/add', {
+  return await api.post('/products/add', {
     title: body.title,
     description: body.description,
     price: body.price,
@@ -43,12 +37,10 @@ async function createProducts(body: Product): Promise<any> {
     category: body.category,
     thumbnail: body.thumbnail,
   });
-
-  return res.data;
 }
 
 async function updateProducts(id: number, body: Product): Promise<any> {
-  const res = await api.put(`/products/${id}`, {
+  return await api.put(`/products/${id}`, {
     title: body.title,
     description: body.description,
     price: body.price,
@@ -59,14 +51,10 @@ async function updateProducts(id: number, body: Product): Promise<any> {
     category: body.category,
     thumbnail: body.thumbnail,
   })
-
-  return res.data;
 }
 
 async function getAllUsers () {
-  const res = await api.get("/users")
-
-  return res.data
+  return await api.get("/users")
 }
 
 export {

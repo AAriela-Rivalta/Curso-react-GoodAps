@@ -10,13 +10,13 @@ interface Product {
     title: string; 
     description: string;
     price: number;
-    discountPercentage: number; // Campo importante de DummyJson
-    rating: number; // Puntuación
+    discountPercentage: number; 
+    rating: number; 
     stock: number;
     brand: string;
     category: string;
     thumbnail: string;
-    images: string[]; // Array de URLs de imágenes
+    images: string[]; 
 }
 
 export function Home() {
@@ -31,14 +31,15 @@ export function Home() {
       </section>
     );  
     }
-    return(
+
+  return(
         <>
         <section className='flex flex-col justify-center items-center p-10 '>
             <Cover title='Listado de Productos' />
             
             <div className='flex flex-wrap justify-center gap-5 mt-20'>
                 
-                {data?.products.map((product: Product) => (
+                {data?.products.map((product: Product) => ( //se agrego .products a API de DummyJSON, la cual devuelve un Objeto que contiene la lista adentro.
                     <Cards
                         key={product.id}
                         id={product.id}
@@ -67,19 +68,15 @@ export function Home() {
           <div className="bg-white p-6 rounded-xl w-2xl flex flex-col justify-center items-center">
             <EditForm
               id={selectedProduct.id}
-              initialData={{
+              initialData={{  // <-- aqui se crea el initialData que luego se llama desde el EditForm
                 title: selectedProduct.title,
                 description: selectedProduct.description,
                 category: selectedProduct.category,
                 price: selectedProduct.price,
-                
-                // === AÑADIR PROPIEDADES FALTANTES ===
                 discountPercentage: selectedProduct.discountPercentage,
                 rating: selectedProduct.rating,
                 stock: selectedProduct.stock,
                 brand: selectedProduct.brand,
-                // ==================================
-                
                 thumbnail: selectedProduct.thumbnail,
               }}
               onClose={() => setOpen(false)}
@@ -88,5 +85,5 @@ export function Home() {
         </div>
       )}
         </>
-    )
+  )
 }

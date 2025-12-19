@@ -30,34 +30,34 @@ export function EditForm({ id, initialData, onClose }: EditFormProps) {
     const { mutate, isPending } = useUpdateProducts();
 
     const { 
-        register,
-        handleSubmit,
-        formState: { errors },
-        reset,
+        register, //funcion para conectar los inputs con el formulario
+        handleSubmit, //funcion que procesa el envio y valida los datos
+        formState: { errors }, //objeto que contiene los errores de validacion (si los hay)
+        reset, //funcion para limpiar o recargar los valores del formulario
     } = useForm<ProductFormData>({
-        resolver: zodResolver(productSchema),
-        defaultValues: initialData,
+        resolver: zodResolver(productSchema), //usa Zod para validar que los datos sean correctos
+        defaultValues: initialData, //carga los datos iniciales del producto, se crea en el renderizado del Home (initialData)
     });
 
-    useEffect(() => {
+    useEffect(() => { //obliga al formulario a recargar los datos iniciales cuando cambian
         reset(initialData);
     }, [initialData, reset]);
 
     function onSubmit(body: ProductFormData) {
     mutate(
-      { id, body },
+      { id, body }, //Le envia al hook el ID del producto y los nuevos datos (body)
       {
-        onSuccess: () => {
-          toast.success('Producto actualizado')
-          onClose(); // cerrar modal
+        onSuccess: () => { //si el servidor responde que todo salio bien:
+          toast.success('Producto actualizado') //muestra un mensaje de exito
+          onClose(); // cerrar modal automaticamente
         },
-        onError: (error: any) => {
+        onError: (error: any) => { //si hubo un error al actualizar:
           const message =
             error?.response?.data?.message ||
             error?.message ||
             'Ocurrió un error al actualizar el producto';
 
-          toast.error(message)
+          toast.error(message) //muestra un mensaje de error
         },
       }
     );

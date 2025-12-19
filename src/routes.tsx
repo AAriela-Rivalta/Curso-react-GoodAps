@@ -5,6 +5,7 @@ import { Home } from "./pages/Home";
 import { Users } from "./pages/Users";
 import { ProductDetails } from "./pages/ProductDetails";
 import { Form } from "./pages/Form";
+import { Login } from "./pages/Login";
 
 
 export const router = createBrowserRouter([
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <Login />
+      },
+      {
+        path: '/products',
         element: <Home />
       },
       {

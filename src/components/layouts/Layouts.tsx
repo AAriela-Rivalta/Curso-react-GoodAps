@@ -10,13 +10,13 @@ export function Layouts() {
   const userWithContext = useContext(UserContext);
   const userWithZustand = useUserStore(state => state.user);
 
-   if (!userWithContext) return null;
+  if (!userWithContext) return null;
 
 
 
     
   
-   return (
+  return (
     <>
       <Toaster position="top-right" richColors />
       <header className='p-10 bg-[#eee9e1]'>
@@ -37,7 +37,10 @@ export function Layouts() {
           <nav className=''>
             <ul className='flex items-center gap-2'>
               <li>
-                <Link to="/" className='hover:underline'>Home</Link>
+                <Link to="/" className='hover:underline'>Login</Link>
+              </li>
+              <li>
+                <Link to="/products" className='hover:underline'>Home</Link>
               </li>
               <li>
                 <Link to="/users" className='hover:underline'>Users</Link>
