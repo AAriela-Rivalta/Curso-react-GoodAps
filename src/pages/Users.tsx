@@ -1,24 +1,7 @@
 import { Cover } from "../components/ui/Cover";
 import { useAllUsers } from "../hooks/useAllUsers";
 
-interface User {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  username: string;
-  image: string;
-  address: {
-    address: string;
-    city: string;
-    postalCode: string;
-    coordinates: {
-      lat: number;
-      lng: number;
-    };
-  };
-}
+
 
 export function Users () {
     const { data, isPending } = useAllUsers();

@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-
 import { getDetailsProducts } from "../services";
 
-export function useDetailsProducts(id: number | undefined) {
-    return useQuery({
-        queryKey: ["details-products", id],
-        queryFn: () => getDetailsProducts(id),
-    });
+export function useDetailsProducts(id: number) {
+  return useQuery({
+    queryKey: ["product-details", id],
+    queryFn: () => getDetailsProducts(id),
+    enabled: !!id, // 👈 evita correr el hook si no hay id
+  });
 }

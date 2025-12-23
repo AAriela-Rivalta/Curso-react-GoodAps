@@ -22,7 +22,7 @@ export function Layouts() {
       <header className='p-10 bg-[#eee9e1]'>
         <div className='flex justify-between'>
           <div>
-            <Link to="/" className='text-3xl text-[#5c493c] font-bold'>Ecommerce GoodApps</Link>
+            <Link to="/" className='text-3xl text-[#5c493c] font-bold'>DummyJSON</Link>
             <div className='flex flex-col mt-1'>
               <span>
                 Hola <span className='font-bold'>{userWithContext.username}</span>{' '}

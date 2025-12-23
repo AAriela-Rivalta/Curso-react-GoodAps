@@ -1,6 +1,7 @@
 import { api } from "../lib/api";
 
 interface Product {
+    id: number,
     title: string; 
     description: string;
     price: number;
@@ -13,13 +14,36 @@ interface Product {
     images?: string[]; 
 }
 
-// Products
-async function getAllProducts() {
-  return await api.get("/products");
+interface ProductsResponse {
+  products: Product[];
+  total: number;
+  skip: number;
+  limit: number;
+}
+ 
+interface User {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
+  image: string;
 }
 
-async function getDetailsProducts(id: number | undefined){
-    return await api.get(`/products/${id}`)
+interface UsersResponse {
+  users: User[];
+  total: number;
+  skip: number;
+  limit: number;
+}
+
+// Products
+async function getAllProducts(): Promise<ProductsResponse> {
+  return api.get("/products");
+}
+
+async function getDetailsProducts(id: number): Promise<Product> {
+  return api.get(`/products/${id}`);
 }
 
 async function deleteProducts(id: number | undefined) {
@@ -40,6 +64,7 @@ async function createProducts(body: Product): Promise<any> {
   });
 }
 
+
 async function updateProducts(id: number, body: Product): Promise<any> {
   return await api.put(`/products/${id}`, {
     title: body.title,
@@ -54,8 +79,8 @@ async function updateProducts(id: number, body: Product): Promise<any> {
   })
 }
 
-async function getAllUsers () {
-  return await api.get("/users")
+async function getAllUsers(): Promise<UsersResponse> {
+  return api.get("/users");
 }
 
 export {

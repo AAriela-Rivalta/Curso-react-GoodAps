@@ -7,7 +7,7 @@ export function ProductDetails() {
     const { id } = useParams();
     const { data, isPending} = useDetailsProducts(Number(id));
 
-    if (isPending) {
+    if (isPending || !data) {
     return (
         <section className="h-[70vh] flex justify-center items-center">
             <Cover title="Cargando..." />

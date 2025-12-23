@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { createProducts } from "../services";
 
 interface Product {
+    id: number,
     title: string; 
     description: string;
     price: number;

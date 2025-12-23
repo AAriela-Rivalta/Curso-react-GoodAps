@@ -6,7 +6,7 @@ import { EditForm } from "../components/ui/EditForm";
 import { useAllProducts } from "../hooks/useAllProducts";
 
 interface Product {
-   id: number;
+    id: number;
     title: string; 
     description: string;
     price: number;
@@ -16,7 +16,7 @@ interface Product {
     brand: string;
     category: string;
     thumbnail: string;
-    images: string[]; 
+    images?: string[]; 
 }
 
 export function Home() {
@@ -35,11 +35,11 @@ export function Home() {
   return(
         <>
         <section className='flex flex-col justify-center items-center p-10 '>
-            <Cover title='Listado de Productos' />
+            <Cover title='Productos' />
             
             <div className='flex flex-wrap justify-center gap-5 mt-20'>
                 
-                {data?.data.products.map((product: Product) => ( //se agrego .products a API de DummyJSON, la cual devuelve un Objeto que contiene la lista adentro.
+                {data?.products.map((product) => ( //se agrego .products a API de DummyJSON, la cual devuelve un Objeto que contiene la lista adentro.
                 //se agrego otro data porque useAllProducts devuelve toda la respuesta de axios, que tiene otro data adentro
                 //data (React Query) -> AxiosResponse
                 //data.data -> respuesta real de la API
