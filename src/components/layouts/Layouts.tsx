@@ -1,38 +1,46 @@
-import { useContext } from 'react'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
-import { Toaster } from 'sonner'
+import { useState, useContext } from 'react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Toaster } from 'sonner';
 
 import { UserContext } from '../../context/UserContext';
 import { useUserStore } from '../../store/useUserStore';
-
 import { isAuth } from '../../auth/isAuth';
 import { logout } from '../../auth/logout';
 
+// Importas tu nuevo componente (lo creamos abajo)
+import { MobileMenu } from '../ui/MobileMenu'; 
 
 export function Layouts() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para el menú
+  
   const userWithContext = useContext(UserContext);
   const userWithZustand = useUserStore(state => state.user);
-
-  const navigate = useNavigate(); //sirve para redirigir al login al hacer logout
-  const isLogged = isAuth(); //isLogged queda •true si hay token •false si o hay
+  const navigate = useNavigate();
+  const isLogged = isAuth();
 
   function handleLogout() {
-    logout(); //borra el token
-    navigate("/", { replace: true }); //te envia al login •replace: true evita que el usuario vuelva atras
+    logout();
+    setIsMenuOpen(false); // Cerramos el menú al salir
+    navigate("/", { replace: true });
   }
 
   if (!userWithContext) return null;
 
-
-
-    
-  
   return (
     <>
       <Toaster position="top-right" richColors />
-      <header className='p-10 bg-[#eee9e1]'>
-        <div className='flex justify-between'>
-          <div>
+      
+      {/* EL MENÚ DESLIZABLE */}
+      <MobileMenu 
+        isOpen={isMenuOpen} 
+        onClose={() => setIsMenuOpen(false)} 
+        isLogged={isLogged}
+        handleLogout={handleLogout}
+        username={userWithContext.username}
+      />
+
+      <header className='p-6 bg-[#eee9e1] flex justify-between items-center'>
+        <div>
             <Link to="/" className='text-3xl text-[#5c493c] font-bold italic'>DummyJSON</Link>
             <div className='flex flex-col mt-1'>
               <span>
@@ -44,38 +52,24 @@ export function Layouts() {
                 desde Zustand
               </span>
             </div>
-          </div>
-          <nav className=''>
-            <ul className='flex items-center gap-2'>
-              {!isLogged && ( //si no hay token -> solo se muestra el login
-                <li>
-                  <Link to="/" className='hover:underline'>Login</Link>
-                </li>
-              )}
-
-              {isLogged && ( //si hay token se renderiza esto
-                <>
-              <li>
-                <Link to="/products" className='hover:underline'>Home</Link>
-              </li>
-              <li>
-                <Link to="/users" className='hover:underline'>Users</Link>
-              </li>
-              <li>
-                <Link to="/new-product" className='hover:underline'>Nuevo Producto</Link>
-              </li>
-              <li>
-                <button onClick={handleLogout} className="bg-[#cd6d22] px-3 py-1 rounded-lg hover:bg-[#a75719]">
-                  Cerrar Sesión 
-                </button>
-              </li>
-              </>
-              )}
-            </ul>
-          </nav>
-        </div>
+            </div>
+        
+        {/* BOTÓN PARA ABRIR EL MENÚ (Hamburguesa) */}
+        <button 
+          onClick={() => setIsMenuOpen(true)}
+          className="text-[#5c493c] p-2"
+        >
+          {/* Icono simple de hamburguesa */}
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
       </header>
-      <Outlet />
+
+      <main>
+        <Outlet />
+      </main>
+      
       <footer className='p-20 bg-[#eee9e1]'></footer>
     </>
   )

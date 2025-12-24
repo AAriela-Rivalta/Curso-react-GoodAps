@@ -79,8 +79,11 @@ async function updateProducts(id: number, body: Product): Promise<any> {
   })
 }
 
-async function getAllUsers(): Promise<UsersResponse> {
-  return api.get("/users");
+async function getAllUsers(page: number): Promise<UsersResponse> { //la funcion recibe la pagina actual, cada vez que cambie le pedimos a la API usuarios distinto
+  const limit = 15; //cantidad de usuarios por pagina
+  const skip = (page - 1) * limit; //skip le dice al backend cuántos usuarios saltearse antes de empezar a devolver datos.
+
+  return api.get(`/users?limit=${limit}&skip=${skip}`);
 }
 
 export {

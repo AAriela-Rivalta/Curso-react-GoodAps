@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { Cover } from "../components/ui/Cover";
 import { useAllUsers } from "../hooks/useAllUsers";
 
 
 
 export function Users () {
-    const { data, isPending } = useAllUsers();
+    const [page, setPage] = useState(1); //guardas la pagina actual y arranca siempre en la pagina 1
+    const { data, isPending } = useAllUsers(page); //cada vez que la pagina cambi el hook se vuelve a ejecutar y React Query pide la pagina correcta
     
     if (isPending) {
         return (
@@ -18,7 +20,7 @@ export function Users () {
     <section className="flex flex-col justify-center items-center p-10 ">
       <Cover title="Listado de Usuarios" />
       <div className="flex flex-wrap justify-center gap-6 mt-20 w-full max-w-6xl ">
-         {data?.users?.map((user: any) => (
+         {data?.users?.map((user: any) => ( //solo renderiza los usuarios de esta página
           <div
             key={user.id}
             className="w-80 border rounded-2xl p-5 bg-[#eee9e1] flex flex-col gap-3 shadow-lg hover:shadow-xl transition-shadow duration-300"
@@ -62,6 +64,24 @@ export function Users () {
             </div>
           </div>
         ))}
+        <div className="flex justify-center items-center gap-4 mt-10">
+        <button
+          disabled={page === 1} //si esta en la page 1 se desactiva
+          onClick={() => setPage(p => p - 1)} //si no resta uno 
+          className="px-4 py-2 bg-[#cd6d22] hover:bg-[#a75719] rounded disabled:opacity-50"
+        >
+          Anterior
+        </button>
+
+        <span className="font-semibold">Página {page}</span> {/*muestra la pagina actual */}
+
+        <button
+          disabled={data ? page * data.limit >= data.total : true}
+          onClick={() => setPage(p => p + 1)} className="px-4 py-2 bg-[#cd6d22] hover:bg-[#a75719] rounded disabled:opacity-50"
+        >
+          Siguiente
+        </button>
+      </div>
       </div>
     </section>
   );
