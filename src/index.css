@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+/* Esto hace que el movimiento de Swiper sea lineal y constante */
+.ticker-swiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}

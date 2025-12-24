@@ -10,6 +10,8 @@ import { logout } from '../../auth/logout';
 // Importas tu nuevo componente (lo creamos abajo)
 import { MobileMenu } from '../ui/MobileMenu'; 
 
+import { TopTicker } from '../ui/TopTicker';
+
 export function Layouts() {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para el menú
   
@@ -30,6 +32,9 @@ export function Layouts() {
     <>
       <Toaster position="top-right" richColors />
       
+      {/* Nuevo Ticker arriba de todo */}
+      <TopTicker />
+
       {/* EL MENÚ DESLIZABLE */}
       <MobileMenu 
         isOpen={isMenuOpen} 
