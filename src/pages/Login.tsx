@@ -53,7 +53,7 @@ export function Login() {
         className="w-full max-w-sm bg-white p-6 rounded-xl border shadow-md"
       >
         <h2 className="text-2xl font-semibold text-center mb-6">
-          Login
+          Iniciar Sesión 
         </h2>
         <div className="mb-4">
           <input
@@ -92,7 +92,7 @@ export function Login() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
+          className="w-full bg-[#cd6d22] text-white py-2 rounded-lg hover:bg-[#a75719] transition disabled:opacity-50"
         >
           {loading ? "Ingresando..." : "Login"}
         </button>
