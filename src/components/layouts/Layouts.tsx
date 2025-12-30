@@ -12,6 +12,8 @@ import { MobileMenu } from '../ui/MobileMenu';
 
 import { TopTicker } from '../ui/TopTicker';
 
+import { FaTwitter, FaFacebookF, FaInstagram } from "react-icons/fa";
+
 export function Layouts() {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para el menú
   
@@ -26,16 +28,16 @@ export function Layouts() {
     navigate("/", { replace: true });
   }
 
-  if (!userWithContext) return null;
+  if (!userWithContext) return null; //Si por alguna razon context esta vacio, la app no mostrara nada
 
   return (
     <>
       <Toaster position="top-right" richColors />
       
-      {/* Nuevo Ticker arriba de todo */}
+      {/*Ticker arriba de todo */}
       <TopTicker />
 
-      {/* EL MENÚ DESLIZABLE */}
+      {/*MENÚ DESLIZABLE */}
       <MobileMenu 
         isOpen={isMenuOpen} 
         onClose={() => setIsMenuOpen(false)} 
@@ -75,7 +77,52 @@ export function Layouts() {
         <Outlet />
       </main>
       
-      <footer className='p-20 bg-[#eee9e1]'></footer>
+      <footer className=' bg-[#eee9e1] '>
+        <div className="max-w-7xl mx-auto px-10 py-16 grid grid-cols-1 md:grid-cols-2 gap-12">
+                    
+                    {/* Columna 1: Logo y Eslogan */}
+                    <div className="space-y-6">
+                        <Link to="/" className='text-3xl text-[#5c493c] font-bold italic'>DummyJSON</Link>
+                        <p className="text-gray-700 text-sm leading-relaxed">
+                            API REST falsa gratuita para datos JSON de marcador de posición
+                        </p>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                    
+
+                    
+
+                    {/* Columna 2: Redes Sociales */}
+                    <div>
+                        <h3 className="font-bold text-lg mb-6 ">Visitanos en redes</h3>
+                        <div className="flex gap-4 text-[#cd6d22]  ">
+                            <a href="#" className="p-2 rounded-full hover:bg-[#cd6d22] transition-colors hover:text-white">
+                                <FaTwitter size={18} />
+                            </a>
+                            <a href="#" className="p-2 rounded-full hover:bg-[#cd6d22] transition-colors hover:text-white">
+                                <FaFacebookF size={18} />
+                            </a>
+                            <a href="#" className="p-2 rounded-full hover:bg-[#cd6d22] transition-colors hover:text-white">
+                                <FaInstagram size={18} />
+                            </a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                {/* Barra Inferior*/}
+                <div className="bg-[#cd6d22]">
+                    <div className="max-w-7xl mx-auto px-10 py-5 flex flex-col md:flex-row justify-between items-center text-[#333333]  gap-4">
+                        <p>DummyJSON - 2025 © Derechos Reservados</p>
+                        <div className="flex gap-10">
+                            <Link to="/" className="hover:underline">Política de privacidad</Link>
+                            <Link to="/" className="hover:underline">Términos de uso</Link>
+                            <Link to="/" className="hover:underline">Cookies</Link>
+                        </div>
+                    </div>
+                </div>
+      </footer>
     </>
   )
 }

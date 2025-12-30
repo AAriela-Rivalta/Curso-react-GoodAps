@@ -44,8 +44,11 @@ export function EditForm({ id, initialData, onClose }: EditFormProps) {
     }, [initialData, reset]);
 
     function onSubmit(body: ProductFormData) {
+        const productToUpdate = {
+            id, body
+        };
     mutate(
-      { id, body }, //Le envia al hook el ID del producto y los nuevos datos (body)
+      { id, body: productToUpdate as any }, //Le envia al hook el ID del producto y los nuevos datos (body)
       {
         onSuccess: () => { //si el servidor responde que todo salio bien:
           toast.success('Producto actualizado') //muestra un mensaje de exito

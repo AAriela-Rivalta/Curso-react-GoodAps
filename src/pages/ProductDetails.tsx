@@ -18,7 +18,7 @@ export function ProductDetails() {
    return (
         <>
             <section className='flex flex-col max-w-7xl m-auto p-10'>
-                <div className='bg-gray-300 p-1.5 rounded-xl w-max mb-2 text-sm'>{data.category}</div>
+                <div className='bg-[#cd6d22] p-1.5 rounded-xl w-max mb-2 text-sm text-white'>{data.category}</div>
                 <Cover title={data.title} />
 
                 <section className='flex gap-7 mt-14'>
@@ -26,7 +26,7 @@ export function ProductDetails() {
                     <img 
                         src={data.thumbnail} 
                         alt={data.title} 
-                        className='w-1/3 h-auto object-contain' // Añadí clases para control de tamaño
+                        className='w-1/3 h-auto object-contain hover:shadow-2xl' // Añadí clases para control de tamaño
                     />
 
                     <div className='flex flex-col gap-3'>
@@ -37,10 +37,13 @@ export function ProductDetails() {
                                 <span className="text-lg text-green-600 ml-2"> (-{data.discountPercentage}%)</span>
                             }
                         </span>
-                        <p>{data.description}</p>
+                        <p className="italic">{data.description}</p>
                         <p className='text-sm text-gray-500'>Marca: {data.brand}</p>
                         <p className='text-sm text-gray-500'>Stock: {data.stock}</p>
-                        <p className='text-sm text-yellow-500'>Rating: {data.rating} / 5</p>
+                        <div className='flex items-center text-sm text-[#a75719] mt-2'>
+                            <span role="img" aria-label="Rating Star" className='mr-1'>⭐ Rating:</span>
+                            <span className='font-semibold text-[#a75719]'>{data.rating}</span>
+                        </div>
                     </div>
                 </section>
             </section>

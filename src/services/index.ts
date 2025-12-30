@@ -39,7 +39,7 @@ interface UsersResponse {
 
 // Products
 async function getAllProducts(): Promise<ProductsResponse> {
-  return api.get("/products");
+  return api.get("/products/category/smartphones");
 }
 
 async function getDetailsProducts(id: number): Promise<Product> {

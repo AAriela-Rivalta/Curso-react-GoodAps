@@ -9,6 +9,7 @@ export const api: AxiosInstance = axios.create({
 });
 
 // INTERCEPTOR DE REQUEST
+//antes de que salga cualquier peticion, revisa si hay un "token"
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -34,9 +35,6 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       console.log("Token inválido o expirado");
-      // acá después podés explicar:
-      // - logout
-      // - redirect a login
     }
 
     return Promise.reject(error);

@@ -5,6 +5,6 @@ export function useDetailsProducts(id: number) {
   return useQuery({
     queryKey: ["product-details", id],
     queryFn: () => getDetailsProducts(id),
-    enabled: !!id, // 👈 evita correr el hook si no hay id
+    enabled: !!id, //evita correr el hook si no hay id
   });
 }

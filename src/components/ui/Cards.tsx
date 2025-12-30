@@ -69,14 +69,15 @@ export function Cards({ id, src, title, description, price, href, showBtn = true
 
 //Renderizado enfocado en mostrar la información
   return (
-    <div className='flex flex-col items-center w-72 h-96 text-center border rounded-4xl p-5 relative bg-[#eee9e1]
+    <>
+    <div className='flex flex-col items-center w-72 h-100 text-center border rounded-4xl p-5 relative bg-[#eee9e1]
     hover:shadow-2xl transition-all duration-300'>
       
       {/* Imagen del producto */}
       <img 
         src={src} 
         alt={title} 
-        className='w-44 h-44 object-contain' 
+        className='w-45 h-45 object-contain' 
       />
       
       {/* Título */}
@@ -128,9 +129,9 @@ export function Cards({ id, src, title, description, price, href, showBtn = true
           >
             Editar
           </button>
-
-
       </div>
+      
     </div>
+    </>
   );
 }

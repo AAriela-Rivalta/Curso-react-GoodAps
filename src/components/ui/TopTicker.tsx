@@ -31,7 +31,7 @@ export function TopTicker() {
         {/* Repetimos los mensajes varias veces para que no haya huecos en el loop */}
         {[...messages, ...messages].map((text, index) => (
           <SwiperSlide key={index} style={{ width: 'auto' }}>
-            <span className="text-sm font-medium uppercase tracking-widest whitespace-nowrap">
+            <span className="text-sm font-medium tracking-widest whitespace-nowrap">
               {text} <span className="mx-8 opacity-30">•</span>
             </span>
           </SwiperSlide>
