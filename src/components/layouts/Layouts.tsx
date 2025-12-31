@@ -28,7 +28,7 @@ export function Layouts() {
     navigate("/", { replace: true });
   }
 
-  if (!userWithContext) return null; //Si por alguna razon context esta vacio, la app no mostrara nada
+  if (!userWithContext) return null;
 
   return (
     <>
@@ -43,19 +43,18 @@ export function Layouts() {
         onClose={() => setIsMenuOpen(false)} 
         isLogged={isLogged}
         handleLogout={handleLogout}
-        username={userWithContext.username}
       />
 
       <header className='p-6 bg-[#eee9e1] flex justify-between items-center'>
         <div>
             <Link to="/" className='text-3xl text-[#5c493c] font-bold italic'>DummyJSON</Link>
             <div className='flex flex-col mt-1'>
-              <span>
+              {/*<span>
                 Hola <span className='font-bold'>{userWithContext.username}</span>{' '}
                 desde CreateContext{' '}
-              </span>
+              </span>*/}
               <span>
-                Hola <span className='font-bold'>{userWithZustand.username}</span>{' '}
+                Hola <span className='font-bold uppercase'>{userWithZustand.username}</span>{' '}
                 desde Zustand
               </span>
             </div>
@@ -111,7 +110,7 @@ export function Layouts() {
                     </div>
                 </div>
 
-                {/* Barra Inferior*/}
+                {/* Barra Inferior (Beige) */}
                 <div className="bg-[#cd6d22]">
                     <div className="max-w-7xl mx-auto px-10 py-5 flex flex-col md:flex-row justify-between items-center text-[#333333]  gap-4">
                         <p>DummyJSON - 2025 © Derechos Reservados</p>

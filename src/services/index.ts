@@ -86,6 +86,10 @@ async function getAllUsers(page: number): Promise<UsersResponse> { //la funcion 
   return api.get(`/users?limit=${limit}&skip=${skip}`);
 }
 
+async function loginUser(body: any): Promise<any> {
+    return await api.post('/auth/login', body);
+}
+
 export {
     getAllProducts,
     getDetailsProducts,
@@ -93,4 +97,5 @@ export {
     createProducts,
     updateProducts,
     getAllUsers,
+    loginUser,
 }

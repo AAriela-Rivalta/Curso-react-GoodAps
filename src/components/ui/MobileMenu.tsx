@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
+import { useUserStore } from '../../store/useUserStore';
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
   isLogged: boolean;
   handleLogout: () => void;
-  username: string;
 }
 
-export function MobileMenu({ isOpen, onClose, isLogged, handleLogout, username }: Props) {
+export function MobileMenu({ isOpen, onClose, isLogged, handleLogout}: Props) {
+  const user = useUserStore((state) => state.user)
   return (
     <>
       {/* Fondo oscuro (Overlay) cuando el menú está abierto */}
@@ -25,7 +26,7 @@ export function MobileMenu({ isOpen, onClose, isLogged, handleLogout, username }
           
           <div className="mt-8 mb-10">
             <p className="text-gray-600 italic">Hola,</p>
-            <p className="text-xl font-bold">{username}</p>
+            <p className="text-xl font-bold uppercase">{isLogged ? user.username : "Invitado"}</p>
           </div>
 
           <nav className="flex flex-col gap-6 text-lg">
